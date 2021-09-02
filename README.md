@@ -35,16 +35,22 @@ So you have an idea of how my REST API is built please look at this table.
     <td>Add new feedback to database, then redirect</td>
   </tr>
   <tr>
+    <td>Create</td>
+    <td>/comment</td>
+    <td>POST</td>
+    <td>Add new comment to database, then redirect</td>
+  </tr>
+  <tr>
     <td>Show</td>
     <td>/feedback/:id</td>
     <td>GET</td>
-    <td>Show info about one feedback along with comments</td>
+    <td>Show info about one feedback without comments</td>
   </tr>
   <tr>
-    <td>Edit</td>
-    <td>/feedback/:id/edit</td>
+    <td>Show with comments</td>
+    <td>/feedback/:id/comments</td>
     <td>GET</td>
-    <td>Show edit form of one feedback</td>
+    <td>Show info about one feedback along with comments</td>
   </tr>
   <tr>
     <td>Update</td>
