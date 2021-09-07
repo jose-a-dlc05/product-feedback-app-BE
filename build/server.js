@@ -11,3 +11,4 @@ app.use(routes_1.default);
 app.listen(process.env.PORT, () => {
     console.log(`listening on port ${process.env.PORT}`);
 });
+exports.default = app;
