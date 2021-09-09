@@ -4,11 +4,11 @@
 	"description": "This will be the back end to a product feedback application ",
 	"main": "server.js",
 	"scripts": {
-		"start": "node ./build/server.js",
-		"build": "tsc -p .",
+		"start": "npm run build & nodemon ./build/server.js",
+		"build": "tsc --watch",
 		"dev": "nodemon ./src/server.ts"
 	},
-	"author": "",
+	"author": "Jose De La Cruz",
 	"license": "ISC",
 	"dependencies": {
 		"@types/node": "^16.7.10",

@@ -36,15 +36,6 @@ describe('feedbackController', () => {
 		const result = await feedbackCtrl.getFeedback('', '', '');
 		expect(result).toStrictEqual(productRequestTable);
 	});
-	// it.skip('should return 200 OK when getting feedback is valid', (done) => {
-	// 	const status = request(app)
-	// 		.get('/feedback')
-	// 		.then((response: any) => {
-	// 			expect(response.status).toBe(200);
-	// 			done();
-	// 			app.listen(4000).close();
-	// 		});
-	// });
 	it('should return an error', async () => {
 		feedbackService.getFeedback = jest
 			.fn()

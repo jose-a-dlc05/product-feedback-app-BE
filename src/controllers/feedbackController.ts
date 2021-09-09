@@ -2,10 +2,9 @@
 const feedbackService = require('../services/feedbackService');
 
 class feedbackController {
-	getFeedback = (req: any, res: any, next: any): any => {
+	getFeedback = async (req: any, res: any, next: any) => {
 		try {
-			return feedbackService.getFeedback();
-			// return successful status 200
+			return res.status(200).json(await feedbackService.getFeedback());
 		} catch (err) {
 			console.log(err);
 		}

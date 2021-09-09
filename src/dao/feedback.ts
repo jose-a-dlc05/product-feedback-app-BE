@@ -6,7 +6,16 @@ class FeedbackDAO {
 	async getFeedback() {
 		// getFeedback()
 		const knex = await db;
-		console.log(knex.default().queryBuilder());
+		return await knex
+			.default('product_feedback')
+			.select(
+				'title',
+				'category',
+				'upvotes',
+				'status',
+				'description',
+				'created_at'
+			);
 	}
 }
 
