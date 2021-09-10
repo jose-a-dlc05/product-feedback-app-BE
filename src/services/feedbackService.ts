@@ -9,6 +9,14 @@ class FeedbackService {
 			console.log(err);
 		}
 	}
+
+	async getSingleFeedback(id: string) {
+		try {
+			return await feedbackDAO.getSingleFeedback(id);
+		} catch (err) {
+			console.log(err);
+		}
+	}
 }
 
 module.exports = new FeedbackService();

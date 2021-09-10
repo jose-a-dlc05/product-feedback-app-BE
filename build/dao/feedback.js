@@ -10,6 +10,14 @@ class FeedbackDAO {
             .default('product_feedback')
             .select('title', 'category', 'upvotes', 'status', 'description', 'created_at');
     }
+    async getSingleFeedback(id) {
+        const product_feedbackId = Number(id);
+        const knex = await db;
+        return await knex
+            .default('product_feedback')
+            .select('title', 'category', 'upvotes')
+            .where('product_feedback_id', product_feedbackId);
+    }
 }
 // createFeedback(title, category, description)
 // export feedbackDAO

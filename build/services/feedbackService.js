@@ -3,8 +3,20 @@
 const feedbackDAO = require('../dao/feedback');
 class FeedbackService {
     async getFeedback() {
-        return [];
-        // return await feedbackDAO.getFeedback();
+        try {
+            return await feedbackDAO.getFeedback();
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
+    async getSingleFeedback(id) {
+        try {
+            return await feedbackDAO.getSingleFeedback(id);
+        }
+        catch (err) {
+            console.log(err);
+        }
     }
 }
 module.exports = new FeedbackService();
