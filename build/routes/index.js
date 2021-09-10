@@ -8,4 +8,5 @@ const express_1 = __importDefault(require("express"));
 const feedbackController = require('../controllers/feedbackController');
 const router = express_1.default.Router();
 router.get(['/', '/feedback'], feedbackController.getFeedback);
+router.get('/feedback/:id', feedbackController.getSingleFeedback);
 exports.default = router;

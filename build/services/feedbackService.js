@@ -2,8 +2,9 @@
 // import dao
 const feedbackDAO = require('../dao/feedback');
 class FeedbackService {
-    getFeedback() {
-        return feedbackDAO.getFeedback();
+    async getFeedback() {
+        return [];
+        // return await feedbackDAO.getFeedback();
     }
 }
 module.exports = new FeedbackService();

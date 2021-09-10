@@ -6,4 +6,4 @@ const path_1 = require("path");
 // error key if it failed
 const dotenv_1 = require("dotenv");
 // Specifying the custom path since .env file is located in the root folder.
-(0, dotenv_1.config)({ path: (0, path_1.resolve)(__dirname, '../../.env') });
+dotenv_1.config({ path: path_1.resolve(__dirname, '../../.env') });

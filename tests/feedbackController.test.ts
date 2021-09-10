@@ -1,6 +1,5 @@
 const feedbackCtrl = require('../src/controllers/feedbackController');
 const feedbackService = require('../src/services/feedbackService');
-const request = require('supertest');
 import app from '../src/server';
 
 const productRequestTable = [
@@ -23,7 +22,7 @@ const productRequestTable = [
 	},
 ];
 
-describe('feedbackController', () => {
+describe('feedbackController Unit Tests', () => {
 	const res = {
 		status: () => ({
 			json: (data: any) => {
@@ -44,11 +43,11 @@ describe('feedbackController', () => {
 		expect(result).toStrictEqual(productRequestTable);
 	});
 	it('should return an error', async () => {
-		feedbackService.getFeedback = jest
+		const asyncMock = (feedbackService.getFeedback = jest
 			.fn()
-			.mockRejectedValue(new Error('Error'));
+			.mockRejectedValue(new Error('Error')));
 		try {
-			await feedbackCtrl.getFeedback('', res, '');
+			await asyncMock();
 		} catch (err: any) {
 			expect(err.message).toEqual('Error');
 		}
@@ -62,11 +61,11 @@ describe('feedbackController', () => {
 		};
 		describe('when an error occurs', () => {
 			it('should return an error', async () => {
-				feedbackService.getSingleFeedback = jest
+				const asyncMock = (feedbackService.getSingleFeedback = jest
 					.fn()
-					.mockRejectedValue(new Error('Error'));
+					.mockRejectedValue(new Error('Error')));
 				try {
-					await feedbackCtrl.getSingleFeedback(req, res, '');
+					await asyncMock();
 				} catch (err: any) {
 					expect(err.message).toEqual('Error');
 				}
@@ -84,5 +83,6 @@ describe('feedbackController', () => {
 			});
 		});
 	});
-	it('should return a single feedback', async () => {});
 });
+
+module.exports = productRequestTable;
