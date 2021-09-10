@@ -17,6 +17,15 @@ class FeedbackDAO {
 				'created_at'
 			);
 	}
+
+	async getSingleFeedback(id: string) {
+		const product_feedbackId: number = Number(id);
+		const knex = await db;
+		return await knex
+			.default('product_feedback')
+			.select('title', 'category', 'upvotes')
+			.where('product_feedback_id', product_feedbackId);
+	}
 }
 
 // createFeedback(title, category, description)
