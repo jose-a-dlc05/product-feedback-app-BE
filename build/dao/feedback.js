@@ -7,7 +7,7 @@ class FeedbackDAO {
         const knex = await db;
         return await knex
             .default('product_feedback')
-            .join('comments', 'product_feedback.product_feedback_id', '=', 'comments.product_request_id')
+            .leftJoin('comments', 'product_feedback.product_feedback_id', '=', 'comments.product_request_id')
             .select('product_feedback.title', 'product_feedback.category', 'product_feedback.upvotes', 'product_feedback.status', 'product_feedback.description', 'product_feedback.created_at')
             .count('comments.comment_id as comments')
             .whereNull('comments.reply_id')

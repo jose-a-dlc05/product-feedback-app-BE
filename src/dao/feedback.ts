@@ -7,7 +7,7 @@ class FeedbackDAO {
 		const knex = await db;
 		return await knex
 			.default('product_feedback')
-			.join(
+			.leftJoin(
 				'comments',
 				'product_feedback.product_feedback_id',
 				'=',
