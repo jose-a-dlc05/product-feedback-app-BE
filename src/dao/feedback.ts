@@ -57,6 +57,21 @@ class FeedbackDAO {
 			)
 			.where('product_request_id', product_feedbackId);
 	}
+
+	async createFeedback(
+		feedbackTitle: string,
+		category: string,
+		feedbackDetail: string
+	) {
+		const knex = await db;
+		return await knex.default('product_feedback').insert({
+			title: feedbackTitle,
+			category,
+			upvotes: 0,
+			status: 'suggestion',
+			description: feedbackDetail,
+		});
+	}
 }
 
 // createFeedback(title, category, description)

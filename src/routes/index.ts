@@ -16,4 +16,7 @@ router.get(
 	feedbackController.getSingleFeedbackComments
 );
 
+// Add new feedback to database
+router.post(['/', '/feedback'], feedbackController.createFeedback);
+
 export default router;

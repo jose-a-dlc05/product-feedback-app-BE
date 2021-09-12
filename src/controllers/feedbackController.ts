@@ -27,6 +27,15 @@ class feedbackController {
 			console.log(err);
 		}
 	};
+	createFeedback = async (req: any, res: any, next: any) => {
+		try {
+			const postData = req.body;
+			await feedbackService.createFeedback(postData);
+			return res.status(201).json(feedbackService.getFeedback);
+		} catch (err) {
+			console.log(err);
+		}
+	};
 }
 
 module.exports = new feedbackController();

@@ -32,5 +32,14 @@ class FeedbackService {
             console.log(err);
         }
     }
+    async createFeedback(data) {
+        try {
+            let { feedback_title: feedbackTitle, category, feedback_detail: feedbackDetail, } = data;
+            return await feedbackDAO.createFeedback(feedbackTitle, category, feedbackDetail);
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
 }
 module.exports = new FeedbackService();
