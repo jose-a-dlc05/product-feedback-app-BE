@@ -20,6 +20,17 @@ class feedbackController {
                 console.log(err);
             }
         };
+        this.getSingleFeedbackComments = async (req, res, next) => {
+            try {
+                const id = req.params.id;
+                return res
+                    .status(200)
+                    .json(await feedbackService.getSingleFeedbackComments(id));
+            }
+            catch (err) {
+                console.log(err);
+            }
+        };
     }
 }
 module.exports = new feedbackController();

@@ -44,13 +44,13 @@ So you have an idea of how my REST API is built please look at this table.
     <td>Show</td>
     <td>/feedback/:id</td>
     <td>GET</td>
-    <td>Show info about one feedback without comments</td>
+    <td>Show product feedback detail</td>
   </tr>
   <tr>
     <td>Show with comments</td>
     <td>/feedback/:id/comments</td>
     <td>GET</td>
-    <td>Show info about one feedback along with comments</td>
+    <td>Show comments included with the product feedback detail</td>
   </tr>
   <tr>
     <td>Update</td>

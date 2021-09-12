@@ -41,6 +41,22 @@ class FeedbackDAO {
 			.select('title', 'category', 'upvotes')
 			.where('product_feedback_id', product_feedbackId);
 	}
+
+	async getSingleFeedbackComments(id: string) {
+		const product_feedbackId: number = Number(id);
+		const knex = await db;
+		return await knex
+			.default('comments')
+			.select(
+				'content',
+				'product_request_id',
+				'replying_to_user',
+				'replying_to_id',
+				'reply_id',
+				'created_at'
+			)
+			.where('product_request_id', product_feedbackId);
+	}
 }
 
 // createFeedback(title, category, description)

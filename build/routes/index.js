@@ -7,6 +7,10 @@ const express_1 = __importDefault(require("express"));
 // import controller
 const feedbackController = require('../controllers/feedbackController');
 const router = express_1.default.Router();
+// Show all comments
 router.get(['/', '/feedback'], feedbackController.getFeedback);
-router.get('/feedback/:id', feedbackController.getSingleFeedback);
+// Show one feedback
+router.get(['/:id', '/feedback/:id'], feedbackController.getSingleFeedback);
+// Show comments within feedback
+router.get(['/:id/comments', '/feedback/:id/comments'], feedbackController.getSingleFeedbackComments);
 exports.default = router;

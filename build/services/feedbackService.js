@@ -18,5 +18,19 @@ class FeedbackService {
             console.log(err);
         }
     }
+    async getSingleFeedbackComments(id) {
+        try {
+            const comments = await feedbackDAO.getSingleFeedbackComments(id);
+            if (comments.length > 0) {
+                return comments;
+            }
+            else {
+                return 'No Comments for this feedback';
+            }
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
 }
 module.exports = new FeedbackService();

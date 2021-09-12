@@ -4,8 +4,16 @@ const feedbackController = require('../controllers/feedbackController');
 
 const router: express.Router = express.Router();
 
+// Show all comments
 router.get(['/', '/feedback'], feedbackController.getFeedback);
 
-router.get('/feedback/:id', feedbackController.getSingleFeedback);
+// Show one feedback
+router.get(['/:id', '/feedback/:id'], feedbackController.getSingleFeedback);
+
+// Show comments within feedback
+router.get(
+	['/:id/comments', '/feedback/:id/comments'],
+	feedbackController.getSingleFeedbackComments
+);
 
 export default router;
