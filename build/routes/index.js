@@ -13,4 +13,6 @@ router.get(['/', '/feedback'], feedbackController.getFeedback);
 router.get(['/:id', '/feedback/:id'], feedbackController.getSingleFeedback);
 // Show comments within feedback
 router.get(['/:id/comments', '/feedback/:id/comments'], feedbackController.getSingleFeedbackComments);
+// Add new feedback to database
+router.post(['/', '/feedback'], feedbackController.createFeedback);
 exports.default = router;

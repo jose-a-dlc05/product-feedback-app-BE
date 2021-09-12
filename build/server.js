@@ -7,6 +7,7 @@ const express_1 = __importDefault(require("express"));
 const routes_1 = __importDefault(require("./routes"));
 require("./lib/env");
 const app = (0, express_1.default)();
+app.use(express_1.default.json());
 app.use(routes_1.default);
 app.listen(process.env.PORT, () => {
     console.log(`listening on port ${process.env.PORT}`);

@@ -7,7 +7,7 @@ class FeedbackDAO {
         const knex = await db;
         return await knex
             .default('product_feedback')
-            .join('comments', 'product_feedback.product_feedback_id', '=', 'comments.product_request_id')
+            .leftJoin('comments', 'product_feedback.product_feedback_id', '=', 'comments.product_request_id')
             .select('product_feedback.title', 'product_feedback.category', 'product_feedback.upvotes', 'product_feedback.status', 'product_feedback.description', 'product_feedback.created_at')
             .count('comments.comment_id as comments')
             .whereNull('comments.reply_id')
@@ -28,6 +28,16 @@ class FeedbackDAO {
             .default('comments')
             .select('content', 'product_request_id', 'replying_to_user', 'replying_to_id', 'reply_id', 'created_at')
             .where('product_request_id', product_feedbackId);
+    }
+    async createFeedback(feedbackTitle, category, feedbackDetail) {
+        const knex = await db;
+        return await knex.default('product_feedback').insert({
+            title: feedbackTitle,
+            category,
+            upvotes: 0,
+            status: 'suggestion',
+            description: feedbackDetail,
+        });
     }
 }
 // createFeedback(title, category, description)

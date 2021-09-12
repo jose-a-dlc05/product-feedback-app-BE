@@ -7,7 +7,7 @@ class FeedbackDAO {
 		const knex = await db;
 		return await knex
 			.default('product_feedback')
-			.join(
+			.leftJoin(
 				'comments',
 				'product_feedback.product_feedback_id',
 				'=',
@@ -56,6 +56,21 @@ class FeedbackDAO {
 				'created_at'
 			)
 			.where('product_request_id', product_feedbackId);
+	}
+
+	async createFeedback(
+		feedbackTitle: string,
+		category: string,
+		feedbackDetail: string
+	) {
+		const knex = await db;
+		return await knex.default('product_feedback').insert({
+			title: feedbackTitle,
+			category,
+			upvotes: 0,
+			status: 'suggestion',
+			description: feedbackDetail,
+		});
 	}
 }
 
