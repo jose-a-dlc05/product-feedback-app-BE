@@ -1,5 +1,5 @@
 import express from 'express';
-// import controller
+// Import controller
 const feedbackController = require('../controllers/feedbackController');
 
 const router: express.Router = express.Router();
@@ -18,5 +18,8 @@ router.get(
 
 // Add new feedback to database
 router.post(['/', '/feedback'], feedbackController.createFeedback);
+
+// Delete feedback from database
+router.delete(['/:id', '/feedback/:id'], feedbackController.deleteFeedback);
 
 export default router;

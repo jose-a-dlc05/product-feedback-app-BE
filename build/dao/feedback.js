@@ -14,7 +14,7 @@ class FeedbackDAO {
             .groupBy('product_feedback.title', 'product_feedback.category', 'product_feedback.upvotes', 'product_feedback.status', 'product_feedback.description', 'product_feedback.created_at');
     }
     async getSingleFeedback(id) {
-        const product_feedbackId = Number(id);
+        const product_feedbackId = id;
         const knex = await db;
         return await knex
             .default('product_feedback')
@@ -22,7 +22,7 @@ class FeedbackDAO {
             .where('product_feedback_id', product_feedbackId);
     }
     async getSingleFeedbackComments(id) {
-        const product_feedbackId = Number(id);
+        const product_feedbackId = id;
         const knex = await db;
         return await knex
             .default('comments')
@@ -38,6 +38,14 @@ class FeedbackDAO {
             status: 'suggestion',
             description: feedbackDetail,
         });
+    }
+    async deleteFeedback(id) {
+        const feedbackId = id;
+        const knex = await db;
+        return await knex
+            .default('product_feedback')
+            .where('product_feedback_id', feedbackId)
+            .del();
     }
 }
 // createFeedback(title, category, description)

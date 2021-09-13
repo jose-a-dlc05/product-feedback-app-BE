@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-// import controller
+// Import controller
 const feedbackController = require('../controllers/feedbackController');
 const router = express_1.default.Router();
 // Show all comments
@@ -15,4 +15,6 @@ router.get(['/:id', '/feedback/:id'], feedbackController.getSingleFeedback);
 router.get(['/:id/comments', '/feedback/:id/comments'], feedbackController.getSingleFeedbackComments);
 // Add new feedback to database
 router.post(['/', '/feedback'], feedbackController.createFeedback);
+// Delete feedback from database
+router.delete(['/:id', '/feedback/:id'], feedbackController.deleteFeedback);
 exports.default = router;

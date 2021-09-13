@@ -36,6 +36,15 @@ class feedbackController {
 			console.log(err);
 		}
 	};
+	deleteFeedback = async (req: any, res: any, next: any) => {
+		try {
+			const id: string = req.params.id;
+			await feedbackService.deleteFeedback(id);
+			return res.status(204).send('Feedback Deleted');
+		} catch (err) {
+			console.log(err);
+		}
+	};
 }
 
 module.exports = new feedbackController();
