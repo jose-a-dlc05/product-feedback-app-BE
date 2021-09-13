@@ -33,8 +33,8 @@ class FeedbackDAO {
 			);
 	}
 
-	async getSingleFeedback(id: string) {
-		const product_feedbackId: number = Number(id);
+	async getSingleFeedback(id: number) {
+		const product_feedbackId: number = id;
 		const knex = await db;
 		return await knex
 			.default('product_feedback')
@@ -42,8 +42,8 @@ class FeedbackDAO {
 			.where('product_feedback_id', product_feedbackId);
 	}
 
-	async getSingleFeedbackComments(id: string) {
-		const product_feedbackId: number = Number(id);
+	async getSingleFeedbackComments(id: number) {
+		const product_feedbackId = id;
 		const knex = await db;
 		return await knex
 			.default('comments')
@@ -71,6 +71,15 @@ class FeedbackDAO {
 			status: 'suggestion',
 			description: feedbackDetail,
 		});
+	}
+
+	async deleteFeedback(id: number) {
+		const feedbackId: number = id;
+		const knex = await db;
+		return await knex
+			.default('product_feedback')
+			.where('product_feedback_id', feedbackId)
+			.del();
 	}
 }
 
