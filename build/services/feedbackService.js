@@ -12,7 +12,7 @@ class FeedbackService {
     }
     async getSingleFeedback(id) {
         try {
-            const feedbackId = Number(id);
+            const feedbackId = id;
             return await feedbackDAO.getSingleFeedback(feedbackId);
         }
         catch (err) {
@@ -21,7 +21,7 @@ class FeedbackService {
     }
     async getSingleFeedbackComments(id) {
         try {
-            const feedbackId = Number(id);
+            const feedbackId = id;
             const comments = await feedbackDAO.getSingleFeedbackComments(feedbackId);
             if (comments.length > 0) {
                 return comments;
@@ -45,7 +45,7 @@ class FeedbackService {
     }
     async deleteFeedback(id) {
         try {
-            const feedbackId = Number(id);
+            const feedbackId = id;
             return await feedbackDAO.deleteFeedback(feedbackId);
         }
         catch (err) {

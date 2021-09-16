@@ -5,9 +5,9 @@ const knexfile = {
 	development: {
 		client: 'postgresql',
 		connection: {
-			database: process.env.TEST_DB_NAME,
-			user: process.env.TEST_DB_USER,
-			password: process.env.TEST_DB_PASS,
+			database: process.env.DB_NAME,
+			user: process.env.DB_USER,
+			password: process.env.DB_PASS,
 		},
 		pool: {
 			min: 2,

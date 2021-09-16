@@ -1,6 +1,7 @@
 "use strict";
 //import db
 const db = require('../config/db/db');
+const { v4: uuidv4 } = require('uuid');
 // create a class called FeedbackDAO and create methods with queries on accessing db:
 class FeedbackDAO {
     async getFeedback() {
@@ -32,6 +33,7 @@ class FeedbackDAO {
     async createFeedback(feedbackTitle, category, feedbackDetail) {
         const knex = await db;
         return await knex.default('product_feedback').insert({
+            product_feedback_id: uuidv4(),
             title: feedbackTitle,
             category,
             upvotes: 0,

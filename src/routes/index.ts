@@ -10,6 +10,9 @@ router.get(['/', '/feedback'], feedbackController.getFeedback);
 // Show one feedback
 router.get(['/:id', '/feedback/:id'], feedbackController.getSingleFeedback);
 
+// Update a feedback
+router.get(['/:id', '/feedback/:id'], feedbackController.updateFeedback);
+
 // Show comments within feedback
 router.get(
 	['/:id/comments', '/feedback/:id/comments'],

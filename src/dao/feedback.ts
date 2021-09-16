@@ -1,5 +1,6 @@
 //import db
 const db = require('../config/db/db');
+const { v4: uuidv4 } = require('uuid');
 
 // create a class called FeedbackDAO and create methods with queries on accessing db:
 class FeedbackDAO {
@@ -33,8 +34,8 @@ class FeedbackDAO {
 			);
 	}
 
-	async getSingleFeedback(id: number) {
-		const product_feedbackId: number = id;
+	async getSingleFeedback(id: string) {
+		const product_feedbackId: string = id;
 		const knex = await db;
 		return await knex
 			.default('product_feedback')
@@ -42,8 +43,8 @@ class FeedbackDAO {
 			.where('product_feedback_id', product_feedbackId);
 	}
 
-	async getSingleFeedbackComments(id: number) {
-		const product_feedbackId = id;
+	async getSingleFeedbackComments(id: string) {
+		const product_feedbackId: string = id;
 		const knex = await db;
 		return await knex
 			.default('comments')
@@ -65,6 +66,7 @@ class FeedbackDAO {
 	) {
 		const knex = await db;
 		return await knex.default('product_feedback').insert({
+			product_feedback_id: uuidv4(),
 			title: feedbackTitle,
 			category,
 			upvotes: 0,
@@ -73,8 +75,8 @@ class FeedbackDAO {
 		});
 	}
 
-	async deleteFeedback(id: number) {
-		const feedbackId: number = id;
+	async deleteFeedback(id: string) {
+		const feedbackId: string = id;
 		const knex = await db;
 		return await knex
 			.default('product_feedback')

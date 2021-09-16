@@ -6,7 +6,7 @@ async function up(knex) {
         table.increments('comment_id').primary();
         table.string('content', 500);
         table
-            .integer('product_request_id')
+            .string('product_request_id')
             .references('product_feedback_id')
             .inTable('product_feedback')
             .onUpdate('CASCADE')

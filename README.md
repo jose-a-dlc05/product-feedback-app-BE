@@ -32,13 +32,7 @@ So you have an idea of how my REST API is built please look at this table.
     <td>Create</td>
     <td>/feedback</td>
     <td>POST</td>
-    <td>Add new feedback to database, then redirect</td>
-  </tr>
-  <tr>
-    <td>Create</td>
-    <td>/comment</td>
-    <td>POST</td>
-    <td>Add new comment to database, then redirect</td>
+    <td>Add new feedback to database</td>
   </tr>
   <tr>
     <td>Show</td>
@@ -56,13 +50,37 @@ So you have an idea of how my REST API is built please look at this table.
     <td>Update</td>
     <td>/feedback/:id</td>
     <td>PUT</td>
-    <td>Update a particular feedback, then redirect</td>
+    <td>Update a particular feedback</td>
   </tr>
   <tr>
     <td>Destroy</td>
     <td>/feedback/:id</td>
     <td>DELETE</td>
-    <td>Delete a particular feedback, then redirect</td>
+    <td>Delete a particular feedback</td>
+  </tr>
+  <tr>
+    <td>Create</td>
+    <td>/comment</td>
+    <td>POST</td>
+    <td>Add new comment to database</td>
+  </tr>
+  <tr>
+    <td>Create</td>
+    <td>/reply</td>
+    <td>POST</td>
+    <td>Add new reply to database, then redirect</td>
+  </tr>
+  <tr>
+    <td>Create</td>
+    <td>/users</td>
+    <td>POST</td>
+    <td>Add new user to database</td>
+  </tr>
+  <tr>
+    <td>Create</td>
+    <td>/users/login</td>
+    <td>POST</td>
+    <td>User Login</td>
   </tr>
 </table>
 
