@@ -20,8 +20,21 @@ async function up(knex) {
         table.string('replying_to_user');
         table.integer('replying_to_id');
         table.integer('reply_id');
-        table.timestamps(true, true);
-    });
+        table.timestamp('created_at').defaultTo(knex.fn.now());
+        table.timestamp('updated_at').defaultTo(knex.fn.now());
+    }).raw(`
+    CREATE OR REPLACE FUNCTION update_timestamp_column()
+    RETURNS TRIGGER AS $$
+    BEGIN
+     NEW."updated_at"=now(); 
+     RETURN NEW;
+    END;
+    $$ language 'plpgsql';
+  `).raw(`
+    CREATE TRIGGER update_timestamp_column BEFORE UPDATE
+    ON comments FOR EACH ROW EXECUTE PROCEDURE 
+    update_timestamp_column();
+  `);
 }
 exports.up = up;
 async function down(knex) {

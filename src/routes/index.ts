@@ -11,7 +11,7 @@ router.get(['/', '/feedback'], feedbackController.getFeedback);
 router.get(['/:id', '/feedback/:id'], feedbackController.getSingleFeedback);
 
 // Update a feedback
-router.get(['/:id', '/feedback/:id'], feedbackController.updateFeedback);
+router.put(['/:id', '/feedback/:id'], feedbackController.updateFeedback);
 
 // Show comments within feedback
 router.get(

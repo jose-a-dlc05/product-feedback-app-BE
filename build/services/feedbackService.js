@@ -43,6 +43,15 @@ class FeedbackService {
             console.log(err);
         }
     }
+    async updateFeedback(data, id) {
+        try {
+            let { title, category, status, description } = data;
+            return await feedbackDAO.updateFeedback(title, category, status, description, id);
+        }
+        catch (err) {
+            console.error(err);
+        }
+    }
     async deleteFeedback(id) {
         try {
             const feedbackId = id;

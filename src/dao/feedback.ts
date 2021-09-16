@@ -20,7 +20,8 @@ class FeedbackDAO {
 				'product_feedback.upvotes',
 				'product_feedback.status',
 				'product_feedback.description',
-				'product_feedback.created_at'
+				'product_feedback.created_at',
+				'product_feedback.updated_at'
 			)
 			.count('comments.comment_id as comments')
 			.whereNull('comments.reply_id')
@@ -30,7 +31,8 @@ class FeedbackDAO {
 				'product_feedback.upvotes',
 				'product_feedback.status',
 				'product_feedback.description',
-				'product_feedback.created_at'
+				'product_feedback.created_at',
+				'product_feedback.updated_at'
 			);
 	}
 
@@ -39,7 +41,7 @@ class FeedbackDAO {
 		const knex = await db;
 		return await knex
 			.default('product_feedback')
-			.select('title', 'category', 'upvotes')
+			.select('title', 'category', 'upvotes', 'status', 'description')
 			.where('product_feedback_id', product_feedbackId);
 	}
 
@@ -73,6 +75,25 @@ class FeedbackDAO {
 			status: 'suggestion',
 			description: feedbackDetail,
 		});
+	}
+
+	async updateFeedback(
+		title: string,
+		category: string,
+		status: string,
+		description: string,
+		id: string
+	) {
+		const knex = await db;
+		return await knex
+			.default('product_feedback')
+			.where('product_feedback_id', id)
+			.update({
+				title,
+				category,
+				status,
+				description,
+			});
 	}
 
 	async deleteFeedback(id: string) {

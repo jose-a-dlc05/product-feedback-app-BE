@@ -35,7 +35,18 @@ class feedbackController {
             try {
                 const postData = req.body;
                 await feedbackService.createFeedback(postData);
-                return res.status(201).json(feedbackService.getFeedback);
+                return res.status(201).json(feedbackService.getFeedback());
+            }
+            catch (err) {
+                console.log(err);
+            }
+        };
+        this.updateFeedback = async (req, res, next) => {
+            try {
+                const id = req.params.id;
+                const postData = req.body;
+                await feedbackService.updateFeedback(postData, id);
+                return res.status(200).json(await feedbackService.getFeedback());
             }
             catch (err) {
                 console.log(err);
