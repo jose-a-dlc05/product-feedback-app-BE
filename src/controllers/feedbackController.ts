@@ -1,7 +1,7 @@
 // Import Service
-const feedbackService = require('../services/feedbackService');
+const feedbackService = require('../services/FeedbackService');
 
-class feedbackController {
+class FeedbackController {
 	getFeedback = async (req: any, res: any, next: any) => {
 		try {
 			return res.status(200).json(await feedbackService.getFeedback());
@@ -57,4 +57,4 @@ class feedbackController {
 	};
 }
 
-module.exports = new feedbackController();
+module.exports = new FeedbackController();

@@ -1,6 +1,6 @@
 "use strict";
 // import dao
-const feedbackDAO = require('../dao/feedback');
+const feedbackDAO = require('../dao/Feedback');
 class FeedbackService {
     async getFeedback() {
         try {

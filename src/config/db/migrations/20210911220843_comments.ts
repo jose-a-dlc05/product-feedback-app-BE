@@ -2,7 +2,7 @@ import { Knex } from 'knex';
 
 export async function up(knex: Knex): Promise<void> {
 	return knex.schema.createTable('comments', (table) => {
-		table.increments('comment_id').primary();
+		table.string('comment_id').primary();
 		table.string('content', 500);
 		table
 			.string('product_request_id')
@@ -11,7 +11,7 @@ export async function up(knex: Knex): Promise<void> {
 			.onUpdate('CASCADE')
 			.onDelete('CASCADE');
 		table
-			.integer('user_id')
+			.string('user_id')
 			.references('user_id')
 			.inTable('users')
 			.onUpdate('CASCADE')
