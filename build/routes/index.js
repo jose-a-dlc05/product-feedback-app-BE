@@ -5,18 +5,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 // Import controller
-const feedbackController = require('../controllers/feedbackController');
+const FeedbackController = require('../controllers/FeedbackController');
+const UserController = require('../controllers/UserController');
 const router = express_1.default.Router();
-// Show all comments
-router.get(['/', '/feedback'], feedbackController.getFeedback);
+// FEEDBACK
+// Show all feedback
+router.get(['/', '/feedback'], FeedbackController.getFeedback);
 // Show one feedback
-router.get(['/:id', '/feedback/:id'], feedbackController.getSingleFeedback);
+router.get(['/:id', '/feedback/:id'], FeedbackController.getSingleFeedback);
 // Update a feedback
-router.put(['/:id', '/feedback/:id'], feedbackController.updateFeedback);
+router.put(['/:id', '/feedback/:id'], FeedbackController.updateFeedback);
 // Show comments within feedback
-router.get(['/:id/comments', '/feedback/:id/comments'], feedbackController.getSingleFeedbackComments);
+router.get(['/:id/comments', '/feedback/:id/comments'], FeedbackController.getSingleFeedbackComments);
 // Add new feedback to database
-router.post(['/', '/feedback'], feedbackController.createFeedback);
+router.post(['/', '/feedback'], FeedbackController.createFeedback);
 // Delete feedback from database
-router.delete(['/:id', '/feedback/:id'], feedbackController.deleteFeedback);
+router.delete(['/:id', '/feedback/:id'], FeedbackController.deleteFeedback);
+// USER
+router.post('/users', UserController.createUser);
 exports.default = router;

@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.down = exports.up = void 0;
 async function up(knex) {
     return knex.schema.createTable('comments', (table) => {
-        table.increments('comment_id').primary();
+        table.string('comment_id').primary();
         table.string('content', 500);
         table
             .string('product_request_id')
@@ -12,7 +12,7 @@ async function up(knex) {
             .onUpdate('CASCADE')
             .onDelete('CASCADE');
         table
-            .integer('user_id')
+            .string('user_id')
             .references('user_id')
             .inTable('users')
             .onUpdate('CASCADE')

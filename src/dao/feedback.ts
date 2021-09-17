@@ -1,6 +1,6 @@
 //import db
 const db = require('../config/db/db');
-const { v4: uuidv4 } = require('uuid');
+import { v4 as uuidv4 } from 'uuid';
 
 // create a class called FeedbackDAO and create methods with queries on accessing db:
 class FeedbackDAO {

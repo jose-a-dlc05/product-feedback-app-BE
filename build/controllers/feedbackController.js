@@ -1,7 +1,7 @@
 "use strict";
 // Import Service
-const feedbackService = require('../services/feedbackService');
-class feedbackController {
+const feedbackService = require('../services/FeedbackService');
+class FeedbackController {
     constructor() {
         this.getFeedback = async (req, res, next) => {
             try {
@@ -64,4 +64,4 @@ class feedbackController {
         };
     }
 }
-module.exports = new feedbackController();
+module.exports = new FeedbackController();
