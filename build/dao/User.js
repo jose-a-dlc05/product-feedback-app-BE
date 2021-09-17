@@ -9,13 +9,14 @@ const db_1 = __importDefault(require("../config/db/db"));
 class UserDAO {
     async createUser(user, hashPassword, firstName, lastName) {
         const knex = await db_1.default;
-        return await knex('users').insert({
+        await knex('users').insert({
             user_id: (0, uuid_1.v4)(),
             first_name: firstName,
             last_name: lastName,
             username: user,
             password: hashPassword,
         });
+        return await knex('users').where('user_id', (0, uuid_1.v4)()).select('user_id');
     }
 }
 exports.default = new UserDAO();

@@ -1,5 +1,5 @@
 // Import DAO
-import userDAO from '../dao/user';
+import userDAO from '../dao/User';
 import Helper from '../controllers/Helper';
 
 class UserService {
@@ -11,9 +11,6 @@ class UserService {
 	createUser = async (data: object) => {
 		try {
 			const { user, password, firstName, lastName }: any = data;
-			if (!user || !password) {
-				return { message: 'Some values are missing' };
-			}
 			const hashPassword = Helper.hashPassword(password);
 			return await userDAO.createUser(user, hashPassword, firstName, lastName);
 		} catch (err) {

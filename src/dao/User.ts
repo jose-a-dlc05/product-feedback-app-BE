@@ -10,13 +10,14 @@ class UserDAO {
 		lastName: string
 	) {
 		const knex: any = await db;
-		return await knex('users').insert({
+		await knex('users').insert({
 			user_id: uuidv4(),
 			first_name: firstName,
 			last_name: lastName,
 			username: user,
 			password: hashPassword,
 		});
+		return await knex('users').where('user_id', uuidv4()).select('user_id');
 	}
 }
 
