@@ -9,17 +9,17 @@ class FeedbackDAO {
         return await knex
             .default('product_feedback')
             .leftJoin('comments', 'product_feedback.product_feedback_id', '=', 'comments.product_request_id')
-            .select('product_feedback.title', 'product_feedback.category', 'product_feedback.upvotes', 'product_feedback.status', 'product_feedback.description', 'product_feedback.created_at')
+            .select('product_feedback.title', 'product_feedback.category', 'product_feedback.upvotes', 'product_feedback.status', 'product_feedback.description', 'product_feedback.created_at', 'product_feedback.updated_at')
             .count('comments.comment_id as comments')
             .whereNull('comments.reply_id')
-            .groupBy('product_feedback.title', 'product_feedback.category', 'product_feedback.upvotes', 'product_feedback.status', 'product_feedback.description', 'product_feedback.created_at');
+            .groupBy('product_feedback.title', 'product_feedback.category', 'product_feedback.upvotes', 'product_feedback.status', 'product_feedback.description', 'product_feedback.created_at', 'product_feedback.updated_at');
     }
     async getSingleFeedback(id) {
         const product_feedbackId = id;
         const knex = await db;
         return await knex
             .default('product_feedback')
-            .select('title', 'category', 'upvotes')
+            .select('title', 'category', 'upvotes', 'status', 'description')
             .where('product_feedback_id', product_feedbackId);
     }
     async getSingleFeedbackComments(id) {
@@ -39,6 +39,18 @@ class FeedbackDAO {
             upvotes: 0,
             status: 'suggestion',
             description: feedbackDetail,
+        });
+    }
+    async updateFeedback(title, category, status, description, id) {
+        const knex = await db;
+        return await knex
+            .default('product_feedback')
+            .where('product_feedback_id', id)
+            .update({
+            title,
+            category,
+            status,
+            description,
         });
     }
     async deleteFeedback(id) {
