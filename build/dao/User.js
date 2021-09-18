@@ -18,5 +18,9 @@ class UserDAO {
         });
         return await knex('users').where('user_id', (0, uuid_1.v4)()).select('user_id');
     }
+    async loginUser(user, password) {
+        const knex = await db_1.default;
+        return await knex('users').where('username', user).select();
+    }
 }
 exports.default = new UserDAO();

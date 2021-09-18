@@ -23,6 +23,20 @@ class UserService {
                 console.error(err);
             }
         };
+        /**
+         * Login
+         * @param {object} data
+         * @returns {object} UserService object
+         */
+        this.loginUser = async (data) => {
+            try {
+                const { user, password } = data;
+                return await User_1.default.loginUser(user, password);
+            }
+            catch (err) {
+                console.error(err);
+            }
+        };
     }
 }
 exports.default = new UserService();

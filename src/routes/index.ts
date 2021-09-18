@@ -27,5 +27,6 @@ router.delete(['/:id', '/feedback/:id'], FeedbackController.deleteFeedback);
 router.post('/users', UserController.createUser);
 
 // Login User
+router.post('/users/login', UserController.loginUser);
 
 export default router;
