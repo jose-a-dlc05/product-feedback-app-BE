@@ -17,6 +17,19 @@ class UserService {
 			console.error(err);
 		}
 	};
+	/**
+	 * Login
+	 * @param {object} data
+	 * @returns {object} UserService object
+	 */
+	loginUser = async (data: object) => {
+		try {
+			const { user, password }: any = data;
+			return await userDAO.loginUser(user, password);
+		} catch (err) {
+			console.error(err);
+		}
+	};
 }
 
 export default new UserService();
