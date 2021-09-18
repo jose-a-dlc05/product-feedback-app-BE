@@ -29,4 +29,7 @@ router.post('/users', UserController.createUser);
 // Login User
 router.post('/users/login', UserController.loginUser);
 
+// COMMENTS
+router.post('/comments', CommentController.createComment);
+
 export default router;

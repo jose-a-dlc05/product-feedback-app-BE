@@ -10,13 +10,13 @@ class UserDAO {
     async createUser(user, hashPassword, firstName, lastName) {
         const knex = await db_1.default;
         await knex('users').insert({
-            user_id: (0, uuid_1.v4)(),
+            user_id: uuid_1.v4(),
             first_name: firstName,
             last_name: lastName,
             username: user,
             password: hashPassword,
         });
-        return await knex('users').where('user_id', (0, uuid_1.v4)()).select('user_id');
+        return await knex('users').where('user_id', uuid_1.v4()).select('user_id');
     }
     async loginUser(user, password) {
         const knex = await db_1.default;
