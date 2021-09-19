@@ -4,8 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-const db_1 = __importDefault(require("../config/db/db"));
 require("../lib/env");
+const AuthService_1 = __importDefault(require("../services/AuthService"));
 class Auth {
     constructor() {
         /**
@@ -26,15 +26,14 @@ class Auth {
             }
             try {
                 const decoded = await jsonwebtoken_1.default.verify(token, process.env.SECRET);
-                const knex = await db_1.default;
-                const userRow = await knex('users').where('id', decoded.userId).select();
+                const userRow = await AuthService_1.default.verifyToken(decoded.userId);
                 if (!userRow) {
                     return res
                         .status(400)
                         .send({ message: 'The token you provided is invalid' });
                 }
                 // If the user does exist in the DB, we create a new object property in the req object.
-                req.user = { id: decoded.userId };
+                req.user = { id: userRow };
                 // Since this method is a middleware, we used next() in moving to the next request handler. If
                 // any error occurred in here, we return an error message back to the user without having to move
                 // move to the next request handler.
