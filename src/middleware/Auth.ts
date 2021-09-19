@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import db from '../config/db/db';
+import '../lib/env';
 
 class Auth {
 	/**
@@ -22,7 +23,7 @@ class Auth {
 		try {
 			const decoded = await jwt.verify(token, process.env.SECRET);
 			const knex = await db;
-			const userRow = await knex('users').where('user_id', decoded.userId);
+			const userRow = await knex('users').where('id', decoded.userId).select();
 			if (!userRow) {
 				return res
 					.status(400)

@@ -4,9 +4,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const Auth_1 = __importDefault(require("../middleware/Auth"));
 // Import controller
 const FeedbackController = require('../controllers/FeedbackController');
 const UserController = require('../controllers/UserController');
+const CommentController = require('../controllers/CommentController');
 const router = express_1.default.Router();
 // FEEDBACK
 // Show all feedback
@@ -26,4 +28,6 @@ router.delete(['/:id', '/feedback/:id'], FeedbackController.deleteFeedback);
 router.post('/users', UserController.createUser);
 // Login User
 router.post('/users/login', UserController.loginUser);
+// COMMENTS
+router.post('/comments', Auth_1.default.verifyToken, CommentController.createComment);
 exports.default = router;

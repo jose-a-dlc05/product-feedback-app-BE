@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const db_1 = __importDefault(require("../config/db/db"));
+require("../lib/env");
 class Auth {
     constructor() {
         /**
@@ -26,7 +27,7 @@ class Auth {
             try {
                 const decoded = await jsonwebtoken_1.default.verify(token, process.env.SECRET);
                 const knex = await db_1.default;
-                const userRow = await knex('users').where('user_id', decoded.userId);
+                const userRow = await knex('users').where('id', decoded.userId).select();
                 if (!userRow) {
                     return res
                         .status(400)

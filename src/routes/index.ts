@@ -1,7 +1,9 @@
 import express from 'express';
+import Auth from '../middleware/Auth';
 // Import controller
 const FeedbackController = require('../controllers/FeedbackController');
 const UserController = require('../controllers/UserController');
+const CommentController = require('../controllers/CommentController');
 
 const router: express.Router = express.Router();
 
@@ -30,6 +32,5 @@ router.post('/users', UserController.createUser);
 router.post('/users/login', UserController.loginUser);
 
 // COMMENTS
-router.post('/comments', CommentController.createComment);
-
+router.post('/comments', Auth.verifyToken, CommentController.createComment);
 export default router;

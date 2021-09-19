@@ -9,10 +9,9 @@ class FeedbackDAO {
         const knex = await db;
         return await knex
             .default('product_feedback')
-            .leftJoin('comments', 'product_feedback.product_feedback_id', '=', 'comments.product_request_id')
+            .leftJoin('comments', 'product_feedback.id', '=', 'comments.product_feedback_id')
             .select('product_feedback.title', 'product_feedback.category', 'product_feedback.upvotes', 'product_feedback.status', 'product_feedback.description', 'product_feedback.created_at', 'product_feedback.updated_at')
-            .count('comments.comment_id as comments')
-            .whereNull('comments.reply_id')
+            .count('comments.id as comments')
             .groupBy('product_feedback.title', 'product_feedback.category', 'product_feedback.upvotes', 'product_feedback.status', 'product_feedback.description', 'product_feedback.created_at', 'product_feedback.updated_at');
     }
     async getSingleFeedback(id) {
@@ -21,20 +20,20 @@ class FeedbackDAO {
         return await knex
             .default('product_feedback')
             .select('title', 'category', 'upvotes', 'status', 'description')
-            .where('product_feedback_id', product_feedbackId);
+            .where('id', product_feedbackId);
     }
     async getSingleFeedbackComments(id) {
         const product_feedbackId = id;
         const knex = await db;
         return await knex
             .default('comments')
-            .select('content', 'product_request_id', 'replying_to_user', 'replying_to_id', 'reply_id', 'created_at')
-            .where('product_request_id', product_feedbackId);
+            .select('content', 'id', 'replying_to_user', 'parent_id', 'created_at')
+            .where('id', product_feedbackId);
     }
     async createFeedback(feedbackTitle, category, feedbackDetail) {
         const knex = await db;
         return await knex.default('product_feedback').insert({
-            product_feedback_id: uuid_1.v4(),
+            id: (0, uuid_1.v4)(),
             title: feedbackTitle,
             category,
             upvotes: 0,
@@ -44,10 +43,7 @@ class FeedbackDAO {
     }
     async updateFeedback(title, category, status, description, id) {
         const knex = await db;
-        return await knex
-            .default('product_feedback')
-            .where('product_feedback_id', id)
-            .update({
+        return await knex.default('product_feedback').where('id', id).update({
             title,
             category,
             status,
@@ -57,10 +53,7 @@ class FeedbackDAO {
     async deleteFeedback(id) {
         const feedbackId = id;
         const knex = await db;
-        return await knex
-            .default('product_feedback')
-            .where('product_feedback_id', feedbackId)
-            .del();
+        return await knex.default('product_feedback').where('id', feedbackId).del();
     }
 }
 // createFeedback(title, category, description)

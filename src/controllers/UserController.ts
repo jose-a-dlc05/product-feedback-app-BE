@@ -17,7 +17,7 @@ class UserController {
 			}
 			const userData = req.body;
 			const userId = await userService.createUser(userData);
-			const token = Helper.generateToken(userId);
+			const token = Helper.generateToken(userId[0]);
 			return res.status(201).send({ token });
 		} catch (err) {
 			console.error(err);
@@ -37,7 +37,7 @@ class UserController {
 			const userData = req.body;
 			const user = await UserService.loginUser(userData);
 			const {
-				user_id: userId,
+				id: userId,
 				first_name: firstName,
 				last_name: lastName,
 				username,
@@ -47,8 +47,8 @@ class UserController {
 			}: any = user;
 			const token = Helper.generateToken(userId);
 			return res.status(201).send({ token });
-		} catch (err) {
-			console.error(err);
+		} catch (err: any) {
+			return res.status(401).send(err.message);
 		}
 	};
 }

@@ -20,7 +20,7 @@ class UserService {
                 return await User_1.default.createUser(user, hashPassword, firstName, lastName);
             }
             catch (err) {
-                console.error(err);
+                throw new Error(err.message);
             }
         };
         /**
@@ -34,7 +34,7 @@ class UserService {
                 return await User_1.default.loginUser(user, password);
             }
             catch (err) {
-                console.error(err);
+                throw new Error(err.message);
             }
         };
     }
