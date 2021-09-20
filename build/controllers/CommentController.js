@@ -13,7 +13,7 @@ class CommentController {
                     return res.status(400).send({ message: 'There is no value' });
                 }
                 const { comment } = req.body;
-                console.log(comment, req.user.id);
+                console.log(comment, req.user.id, req.params.id);
                 return res.status(201).send({ message: 'success' });
             }
             catch (err) {

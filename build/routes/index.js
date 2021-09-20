@@ -29,5 +29,5 @@ router.post('/users', UserController.createUser);
 // Login User
 router.post('/users/login', UserController.loginUser);
 // COMMENTS
-router.post('/comments', Auth_1.default.verifyToken, CommentController.createComment);
+router.post(['/:id/comments', '/feedback/:id/comments'], Auth_1.default.verifyToken, CommentController.createComment);
 exports.default = router;
