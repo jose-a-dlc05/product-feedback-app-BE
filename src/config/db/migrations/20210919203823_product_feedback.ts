@@ -2,7 +2,7 @@ import { Knex } from 'knex';
 
 export async function up(knex: Knex): Promise<void> {
 	return knex.schema.createTable('product_feedback', (table) => {
-		table.string('product_feedback_id').primary().unique();
+		table.string('id').primary().unique();
 		table.string('title', 100).notNullable();
 		table.string('category', 50).notNullable();
 		table.integer('upvotes');

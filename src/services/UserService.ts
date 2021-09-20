@@ -13,8 +13,8 @@ class UserService {
 			const { user, password, firstName, lastName }: any = data;
 			const hashPassword = Helper.hashPassword(password);
 			return await userDAO.createUser(user, hashPassword, firstName, lastName);
-		} catch (err) {
-			console.error(err);
+		} catch (err: any) {
+			throw new Error(err.message);
 		}
 	};
 	/**
@@ -26,8 +26,8 @@ class UserService {
 		try {
 			const { user, password }: any = data;
 			return await userDAO.loginUser(user, password);
-		} catch (err) {
-			console.error(err);
+		} catch (err: any) {
+			throw new Error(err.message);
 		}
 	};
 }

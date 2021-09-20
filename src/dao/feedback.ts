@@ -10,9 +10,9 @@ class FeedbackDAO {
 			.default('product_feedback')
 			.leftJoin(
 				'comments',
-				'product_feedback.product_feedback_id',
+				'product_feedback.id',
 				'=',
-				'comments.product_request_id'
+				'comments.product_feedback_id'
 			)
 			.select(
 				'product_feedback.title',
@@ -23,8 +23,7 @@ class FeedbackDAO {
 				'product_feedback.created_at',
 				'product_feedback.updated_at'
 			)
-			.count('comments.comment_id as comments')
-			.whereNull('comments.reply_id')
+			.count('comments.id as comments')
 			.groupBy(
 				'product_feedback.title',
 				'product_feedback.category',
@@ -42,7 +41,7 @@ class FeedbackDAO {
 		return await knex
 			.default('product_feedback')
 			.select('title', 'category', 'upvotes', 'status', 'description')
-			.where('product_feedback_id', product_feedbackId);
+			.where('id', product_feedbackId);
 	}
 
 	async getSingleFeedbackComments(id: string) {
@@ -50,15 +49,8 @@ class FeedbackDAO {
 		const knex = await db;
 		return await knex
 			.default('comments')
-			.select(
-				'content',
-				'product_request_id',
-				'replying_to_user',
-				'replying_to_id',
-				'reply_id',
-				'created_at'
-			)
-			.where('product_request_id', product_feedbackId);
+			.select('content', 'id', 'replying_to_user', 'parent_id', 'created_at')
+			.where('id', product_feedbackId);
 	}
 
 	async createFeedback(
@@ -68,7 +60,7 @@ class FeedbackDAO {
 	) {
 		const knex = await db;
 		return await knex.default('product_feedback').insert({
-			product_feedback_id: uuidv4(),
+			id: uuidv4(),
 			title: feedbackTitle,
 			category,
 			upvotes: 0,
@@ -85,24 +77,18 @@ class FeedbackDAO {
 		id: string
 	) {
 		const knex = await db;
-		return await knex
-			.default('product_feedback')
-			.where('product_feedback_id', id)
-			.update({
-				title,
-				category,
-				status,
-				description,
-			});
+		return await knex.default('product_feedback').where('id', id).update({
+			title,
+			category,
+			status,
+			description,
+		});
 	}
 
 	async deleteFeedback(id: string) {
 		const feedbackId: string = id;
 		const knex = await db;
-		return await knex
-			.default('product_feedback')
-			.where('product_feedback_id', feedbackId)
-			.del();
+		return await knex.default('product_feedback').where('id', feedbackId).del();
 	}
 }
 
