@@ -36,21 +36,22 @@ class FeedbackDAO {
 	}
 
 	async getSingleFeedback(id: string) {
-		const product_feedbackId: string = id;
+		const productFeedbackId: string = id;
 		const knex = await db;
 		return await knex
 			.default('product_feedback')
 			.select('title', 'category', 'upvotes', 'status', 'description')
-			.where('id', product_feedbackId);
+			.where('id', productFeedbackId);
 	}
 
 	async getSingleFeedbackComments(id: string) {
-		const product_feedbackId: string = id;
+		const productFeedbackId: string = id;
 		const knex = await db;
-		return await knex
+		const comments = await knex
 			.default('comments')
 			.select('content', 'id', 'replying_to_user', 'parent_id', 'created_at')
-			.where('id', product_feedbackId);
+			.where('product_feedback_id', productFeedbackId);
+		return comments;
 	}
 
 	async createFeedback(

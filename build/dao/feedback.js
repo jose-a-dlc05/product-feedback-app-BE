@@ -15,20 +15,21 @@ class FeedbackDAO {
             .groupBy('product_feedback.title', 'product_feedback.category', 'product_feedback.upvotes', 'product_feedback.status', 'product_feedback.description', 'product_feedback.created_at', 'product_feedback.updated_at');
     }
     async getSingleFeedback(id) {
-        const product_feedbackId = id;
+        const productFeedbackId = id;
         const knex = await db;
         return await knex
             .default('product_feedback')
             .select('title', 'category', 'upvotes', 'status', 'description')
-            .where('id', product_feedbackId);
+            .where('id', productFeedbackId);
     }
     async getSingleFeedbackComments(id) {
-        const product_feedbackId = id;
+        const productFeedbackId = id;
         const knex = await db;
-        return await knex
+        const comments = await knex
             .default('comments')
             .select('content', 'id', 'replying_to_user', 'parent_id', 'created_at')
-            .where('id', product_feedbackId);
+            .where('product_feedback_id', productFeedbackId);
+        return comments;
     }
     async createFeedback(feedbackTitle, category, feedbackDetail) {
         const knex = await db;

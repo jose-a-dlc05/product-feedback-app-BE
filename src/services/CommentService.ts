@@ -2,12 +2,12 @@ import CommentDAO from '../dao/Comment';
 
 class CommentService {
 	createComment = async (
-		content: string,
+		comment: string,
 		userId: string,
 		feedbackId: string
 	) => {
 		try {
-			return await CommentDAO.createComment(content, userId, feedbackId);
+			return await CommentDAO.createComment(comment, userId, feedbackId);
 		} catch (err) {
 			console.error(err);
 		}

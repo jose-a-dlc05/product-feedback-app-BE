@@ -9,14 +9,12 @@ class CommentDAO {
 	) => {
 		try {
 			const knex = await db;
-			if (comment.length < 250) {
-				return await knex('comments').insert({
-					id: uuidv4(),
-					content: comment,
-					product_feedback_id: feedbackId,
-					user_id: userId,
-				});
-			}
+			return await knex('comments').insert({
+				id: uuidv4(),
+				content: comment,
+				product_feedback_id: feedbackId,
+				user_id: userId,
+			});
 		} catch (err) {
 			console.error(err);
 		}
