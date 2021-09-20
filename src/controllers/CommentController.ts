@@ -1,3 +1,5 @@
+import CommentService from '../services/CommentService';
+
 class CommentController {
 	/**
 	 * Create Comment
@@ -7,12 +9,16 @@ class CommentController {
 	 */
 	createComment = async (req: any, res: any) => {
 		try {
-			if (!req.body.comment) {
+			if (!req.body.comment || !req.params.id || !req.user.id) {
 				return res.status(400).send({ message: 'There is no value' });
 			}
-			const { comment } = req.body;
-			console.log(comment, req.user.id, req.params.id);
-			return res.status(201).send({ message: 'success' });
+			const { content } = req.body;
+			const commentCreated = await CommentService.createComment(
+				content,
+				req.user.id,
+				req.params.id
+			);
+			return res.status(201).json(commentCreated);
 		} catch (err) {
 			return res.status(400).send(err);
 		}
