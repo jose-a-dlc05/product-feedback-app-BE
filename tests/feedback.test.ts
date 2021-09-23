@@ -1,5 +1,5 @@
-const knexModule = require('../src/config/db/db');
 const feedback: any = require('../src/dao/feedback');
+import Knex from 'knex';
 
 const productRequestDb = [
 	{
@@ -21,24 +21,24 @@ const productRequestDb = [
 	},
 ];
 
-// beforeEach(() => {
-// 	knexModule.mockReset();
-// });
+jest.mock('../src/config/db/db', () =>
+	jest.fn(() =>
+		Promise.resolve({
+			default: jest.fn().mockReturnThis(),
+			leftJoin: jest.fn().mockReturnThis(),
+			select: jest.fn().mockReturnThis(),
+			count: jest.fn().mockReturnThis(),
+			groupBy: jest.fn().mockResolvedValue(productRequestDb),
+		} as unknown)
+	)
+);
+const db = require('../src/config/db/db');
+
+console.log(db);
 describe('feedback dao unit tests', () => {
-	jest.fn().mockResolvedValue(knexModule);
 	describe('feedbackDAO', () => {
 		it('should call knex and return all feedback', async () => {
-			const knex = await knexModule;
-			const result = await knex
-				.default(productRequestDb)
-				.select(
-					'title',
-					'category',
-					'upvotes',
-					'status',
-					'description',
-					'created_at'
-				);
+			const result = await feedback.getFeedback();
 			expect(result).toStrictEqual(productRequestDb);
 		});
 	});
