@@ -2,57 +2,65 @@
 const feedbackService = require('../services/FeedbackService');
 
 class FeedbackController {
-	getFeedback = async (req: any, res: any, next: any) => {
+	getFeedback = async (req: any, res: any) => {
 		try {
 			return res.status(200).json(await feedbackService.getFeedback());
 		} catch (err) {
-			console.log(err);
+			console.error(err);
 		}
 	};
-	getSingleFeedback = async (req: any, res: any, next: any) => {
+	getSingleFeedback = async (req: any, res: any) => {
 		try {
 			const id = req.params.id;
 			return res.status(200).json(await feedbackService.getSingleFeedback(id));
 		} catch (err) {
-			console.log(err);
+			console.error(err);
 		}
 	};
-	getSingleFeedbackComments = async (req: any, res: any, next: any) => {
+	getSingleFeedbackComments = async (req: any, res: any) => {
 		try {
 			const id = req.params.id;
 			return res
 				.status(200)
 				.json(await feedbackService.getSingleFeedbackComments(id));
 		} catch (err) {
-			console.log(err);
+			console.error(err);
 		}
 	};
-	createFeedback = async (req: any, res: any, next: any) => {
+	createFeedback = async (req: any, res: any) => {
 		try {
 			const postData = req.body;
 			await feedbackService.createFeedback(postData);
 			return res.status(201).json(feedbackService.getFeedback());
 		} catch (err) {
-			console.log(err);
+			console.error(err);
 		}
 	};
-	updateFeedback = async (req: any, res: any, next: any) => {
+	updateFeedback = async (req: any, res: any) => {
 		try {
 			const id: string = req.params.id;
 			const postData = req.body;
 			await feedbackService.updateFeedback(postData, id);
 			return res.status(200).json(await feedbackService.getFeedback());
 		} catch (err) {
-			console.log(err);
+			console.error(err);
 		}
 	};
-	deleteFeedback = async (req: any, res: any, next: any) => {
+	deleteFeedback = async (req: any, res: any) => {
 		try {
 			const id: string = req.params.id;
 			await feedbackService.deleteFeedback(id);
 			return res.status(204).send('Feedback Deleted');
 		} catch (err) {
-			console.log(err);
+			console.error(err);
+		}
+	};
+	upvoteFeedback = async (req: any, res: any) => {
+		try {
+			const id: string = req.params.id;
+			await feedbackService.upvoteFeedback(id);
+		} catch (err) {
+			console.error(err);
 		}
 	};
 }

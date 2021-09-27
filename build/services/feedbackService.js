@@ -7,7 +7,7 @@ class FeedbackService {
             return await feedbackDAO.getFeedback();
         }
         catch (err) {
-            console.log(err);
+            console.error(err);
         }
     }
     async getSingleFeedback(id) {
@@ -16,7 +16,7 @@ class FeedbackService {
             return await feedbackDAO.getSingleFeedback(feedbackId);
         }
         catch (err) {
-            console.log(err);
+            console.error(err);
         }
     }
     async getSingleFeedbackComments(id) {
@@ -31,7 +31,7 @@ class FeedbackService {
             }
         }
         catch (err) {
-            console.log(err);
+            console.error(err);
         }
     }
     async createFeedback(data) {
@@ -40,7 +40,7 @@ class FeedbackService {
             return await feedbackDAO.createFeedback(feedbackTitle, category, feedbackDetail);
         }
         catch (err) {
-            console.log(err);
+            console.error(err);
         }
     }
     async updateFeedback(data, id) {
@@ -58,7 +58,16 @@ class FeedbackService {
             return await feedbackDAO.deleteFeedback(feedbackId);
         }
         catch (err) {
-            console.log(err);
+            console.error(err);
+        }
+    }
+    async upvoteFeedback(id) {
+        try {
+            const feedbackId = id;
+            return await feedbackDAO.upvoteFeedback(feedbackId);
+        }
+        catch (err) {
+            console.error(err);
         }
     }
 }

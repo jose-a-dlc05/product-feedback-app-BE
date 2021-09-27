@@ -23,7 +23,8 @@ router.get(
 router.post(['/', '/feedback'], FeedbackController.createFeedback);
 // Delete feedback from database
 router.delete(['/:id', '/feedback/:id'], FeedbackController.deleteFeedback);
-
+// Upvote Feedback
+router.put([':/id', '/feedback/:id'], FeedbackController.upvoteFeedback);
 // USER
 // Create User
 router.post('/users', UserController.createUser);
