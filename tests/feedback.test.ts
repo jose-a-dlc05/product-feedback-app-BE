@@ -1,5 +1,4 @@
 const feedback: any = require('../src/dao/feedback');
-import Knex from 'knex';
 
 const productRequestDb = [
 	{
@@ -21,23 +20,29 @@ const productRequestDb = [
 	},
 ];
 
-jest.mock('../src/config/db/db', () =>
+jest.mock(
+	'../src/config/db/db',
 	jest.fn(() =>
 		Promise.resolve({
-			default: jest.fn().mockReturnThis(),
-			leftJoin: jest.fn().mockReturnThis(),
-			select: jest.fn().mockReturnThis(),
-			count: jest.fn().mockReturnThis(),
-			groupBy: jest.fn().mockResolvedValue(productRequestDb),
+			default: jest.fn(),
+			leftJoin: jest.fn(),
+			select: jest.fn(),
+			count: jest.fn(),
+			groupBy: jest.fn(),
 		} as unknown)
 	)
 );
 const db = require('../src/config/db/db');
 
-console.log(db);
 describe('feedback dao unit tests', () => {
 	describe('feedbackDAO', () => {
 		it('should call knex and return all feedback', async () => {
+			const knex = await db;
+			knex.default.mockReturnThis();
+			knex.leftJoin.mockReturnThis();
+			knex.select.mockReturnThis();
+			knex.count.mockReturnThis();
+			knex.groupBy.mockResolvedValue(productRequestDb);
 			const result = await feedback.getFeedback();
 			expect(result).toStrictEqual(productRequestDb);
 		});
