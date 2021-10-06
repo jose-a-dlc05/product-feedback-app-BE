@@ -1,24 +1,6 @@
 const feedback: any = require('../src/dao/feedback');
-
-const productRequestDb = [
-	{
-		title: 'Add tags for solutions',
-		category: 'enhancement',
-		upvotes: 112,
-		status: 'suggestion',
-		description: 'Easier to search for solutions based on a specific stack.',
-		created_at: '2021-09-02T04:50:20.863Z',
-	},
-	{
-		title: 'Add a dark theme option',
-		category: 'feature',
-		upvotes: 99,
-		status: 'suggestion',
-		description:
-			'It would help people with light sensitivities and who prefer dark mode.',
-		created_at: '2021-09-02T04:50:20.863Z',
-	},
-];
+const productRequestDbAll = require('./productRequestDb');
+const productRequestDbSingle = require('./productRequestDb');
 
 jest.mock(
 	'../src/config/db/db',
@@ -29,6 +11,7 @@ jest.mock(
 			select: jest.fn(),
 			count: jest.fn(),
 			groupBy: jest.fn(),
+			where: jest.fn(),
 		} as unknown)
 	)
 );
@@ -42,9 +25,19 @@ describe('feedback dao unit tests', () => {
 			knex.leftJoin.mockReturnThis();
 			knex.select.mockReturnThis();
 			knex.count.mockReturnThis();
-			knex.groupBy.mockResolvedValue(productRequestDb);
+			knex.groupBy.mockResolvedValue(productRequestDbAll);
 			const result = await feedback.getFeedback();
-			expect(result).toStrictEqual(productRequestDb);
+			expect(result).toStrictEqual(productRequestDbAll);
+		});
+
+		it('should call knex and return single feedback', async () => {
+			const productFeedbackId: string = '6ea1ed94-e08e-4bf1-9cb3-d087e4ed9d3f';
+			const knex = await db;
+			knex.default.mockReturnThis();
+			knex.select.mockReturnThis();
+			knex.where.mockResolvedValue(productRequestDbSingle);
+			const result = await feedback.getSingleFeedback(productFeedbackId);
+			expect(result).toStrictEqual(productRequestDbSingle);
 		});
 	});
 });
