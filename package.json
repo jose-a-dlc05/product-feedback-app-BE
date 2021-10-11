@@ -4,8 +4,8 @@
 	"description": "This will be the back end to a product feedback application ",
 	"main": "server.js",
 	"scripts": {
-		"start": "npm run build & nodemon ./build/server.js",
-		"build": "tsc --watch",
+		"start": "npm run watch & nodemon ./build/server.js",
+		"watch": "tsc --watch",
 		"dev": "nodemon ./src/server.ts",
 		"migrate": "knex migrate:latest --knexfile build/config/db/knexfile.js",
 		"seed": "knex seed:run --knexfile build/config/db/knexfile.js"
@@ -24,8 +24,7 @@
 		"uuid": "^8.3.2"
 	},
 	"engines": {
-		"node": "14.x",
-		"npm": "7.x"
+		"node": "14.x"
 	},
 	"devDependencies": {
 		"@types/bcrypt": "^5.0.0",
