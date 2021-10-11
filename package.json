@@ -6,7 +6,9 @@
 	"scripts": {
 		"start": "npm run build & nodemon ./build/server.js",
 		"build": "tsc --watch",
-		"dev": "nodemon ./src/server.ts"
+		"dev": "nodemon ./src/server.ts",
+		"migrate": "knex migrate:latest --knexfile build/config/db/knexfile.js",
+		"seed": "knex seed:run --knexfile build/config/db/knexfile.js"
 	},
 	"author": "Jose De La Cruz",
 	"license": "ISC",

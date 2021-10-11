@@ -4,7 +4,6 @@ import app from '../src/server';
 
 const productRequestTable = [
 	{
-		product_feedback_id: 1,
 		title: 'Add tags for solutions',
 		category: 'enhancement',
 		upvotes: 112,
