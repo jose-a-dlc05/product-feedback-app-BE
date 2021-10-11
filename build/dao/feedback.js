@@ -34,7 +34,7 @@ class FeedbackDAO {
     async createFeedback(feedbackTitle, category, feedbackDetail) {
         const knex = await db;
         return await knex.default('product_feedback').insert({
-            id: uuid_1.v4(),
+            id: (0, uuid_1.v4)(),
             title: feedbackTitle,
             category,
             upvotes: 0,

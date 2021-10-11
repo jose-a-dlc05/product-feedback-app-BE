@@ -4,7 +4,7 @@
 	"description": "This will be the back end to a product feedback application ",
 	"main": "server.js",
 	"scripts": {
-		"start": "nodemon ./build/server.js",
+		"start": "node ./build/server.js",
 		"watch": "tsc --watch",
 		"dev": "nodemon ./src/server.ts",
 		"migrate": "knex migrate:latest --knexfile build/config/db/knexfile.js",

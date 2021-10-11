@@ -11,7 +11,7 @@ class CommentDAO {
             try {
                 const knex = await db_1.default;
                 return await knex('comments').insert({
-                    id: uuid_1.v4(),
+                    id: (0, uuid_1.v4)(),
                     content: comment,
                     product_feedback_id: feedbackId,
                     user_id: userId,
