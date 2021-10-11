@@ -12,24 +12,24 @@ const CommentController = require('../controllers/CommentController');
 const router = express_1.default.Router();
 // FEEDBACK
 // Show all feedback
-router.get(['/', '/feedback'], FeedbackController.getFeedback);
+router.get(['/', '/feedbackproduct'], FeedbackController.getFeedback);
 // Show one feedback
-router.get(['/:id', '/feedback/:id'], FeedbackController.getSingleFeedback);
+router.get(['/:id', '/feedbackproduct/:id'], FeedbackController.getSingleFeedback);
 // Update a feedback
-router.put(['/:id', '/feedback/:id'], FeedbackController.updateFeedback);
+router.put(['/:id', '/feedbackproduct/:id'], FeedbackController.updateFeedback);
 // Show comments within feedback
-router.get(['/:id/comments', '/feedback/:id/comments'], FeedbackController.getSingleFeedbackComments);
+router.get(['/:id/comments', '/feedbackproduct/:id/comments'], FeedbackController.getSingleFeedbackComments);
 // Add new feedback to database
-router.post(['/', '/feedback'], FeedbackController.createFeedback);
+router.post(['/', '/feedbackproduct'], FeedbackController.createFeedback);
 // Delete feedback from database
-router.delete(['/:id', '/feedback/:id'], FeedbackController.deleteFeedback);
+router.delete(['/:id', '/feedbackproduct/:id'], FeedbackController.deleteFeedback);
 // Upvote Feedback
-router.put([':/id', '/feedback/:id'], FeedbackController.upvoteFeedback);
+router.put([':/id', '/feedbackproduct/:id'], FeedbackController.upvoteFeedback);
 // USER
 // Create User
 router.post('/users', UserController.createUser);
 // Login User
 router.post('/users/login', UserController.loginUser);
 // COMMENTS
-router.post(['/:id/comments', '/feedback/:id/comments'], Auth_1.default.verifyToken, CommentController.createComment);
+router.post(['/:id/comments', '/feedbackproduct/:id/comments'], Auth_1.default.verifyToken, CommentController.createComment);
 exports.default = router;

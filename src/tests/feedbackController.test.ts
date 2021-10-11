@@ -1,6 +1,6 @@
 const feedbackCtrl = require('../src/controllers/feedbackController');
 const feedbackService = require('../src/services/feedbackService');
-import app from '../src/server';
+import app from '../server';
 
 const productRequestTable = [
 	{
