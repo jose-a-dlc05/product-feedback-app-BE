@@ -15,18 +15,19 @@
 	"dependencies": {
 		"@types/node": "^16.7.10",
 		"bcrypt": "^5.0.1",
+		"core-util-is": "^1.0.3",
 		"dotenv": "^10.0.0",
 		"express": "^4.17.1",
 		"jsonwebtoken": "^8.5.1",
 		"knex": "^0.95.10",
+		"nodemon": "^2.0.13",
 		"pg": "^8.7.1",
 		"ts-node": "^10.2.1",
-		"uuid": "^8.3.2",
-		"nodemon": "^2.0.13"
+		"uuid": "^8.3.2"
 	},
 	"engines": {
 		"node": "14.x",
-		"npm": "7.x"
+		"npm": "8.x"
 	},
 	"devDependencies": {
 		"@types/bcrypt": "^5.0.0",
