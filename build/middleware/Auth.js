@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -15,7 +24,7 @@ class Auth {
          * @param {object} next
          * @returns {object|void} response object
          */
-        this.verifyToken = async (req, res, next) => {
+        this.verifyToken = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             // The req.headers['x-access-token'] gets the token from the request header and sends it to
             // jwt.verify along with the secret we used to sign the token.
             // If the token is valid, we retrieve the userId from the token payload and query the DB to make sure
@@ -25,8 +34,8 @@ class Auth {
                 return res.status(400).send({ message: 'Token is not provided' });
             }
             try {
-                const decoded = await jsonwebtoken_1.default.verify(token, process.env.SECRET);
-                const userRow = await AuthService_1.default.verifyToken(decoded.userId);
+                const decoded = yield jsonwebtoken_1.default.verify(token, process.env.SECRET);
+                const userRow = yield AuthService_1.default.verifyToken(decoded.userId);
                 if (!userRow) {
                     return res
                         .status(400)
@@ -42,7 +51,7 @@ class Auth {
             catch (err) {
                 return res.status(400).send(err);
             }
-        };
+        });
     }
 }
 exports.default = new Auth();

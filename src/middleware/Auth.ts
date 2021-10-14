@@ -21,7 +21,10 @@ class Auth {
 			return res.status(400).send({ message: 'Token is not provided' });
 		}
 		try {
-			const decoded = await jwt.verify(token, process.env.SECRET);
+			const decoded: any = await jwt.verify(
+				token,
+				process.env.SECRET as string
+			);
 			const userRow = await AuthService.verifyToken(decoded.userId);
 			if (!userRow) {
 				return res

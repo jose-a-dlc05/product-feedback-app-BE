@@ -1,76 +1,85 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 // Import Service
 const feedbackService = require('../services/FeedbackService');
 class FeedbackController {
     constructor() {
-        this.getFeedback = async (req, res) => {
+        this.getFeedback = (req, res) => __awaiter(this, void 0, void 0, function* () {
             try {
-                return res.status(200).json(await feedbackService.getFeedback());
+                return res.status(200).json(yield feedbackService.getFeedback());
             }
             catch (err) {
                 console.error(err);
             }
-        };
-        this.getSingleFeedback = async (req, res) => {
+        });
+        this.getSingleFeedback = (req, res) => __awaiter(this, void 0, void 0, function* () {
             try {
                 const id = req.params.id;
-                return res.status(200).json(await feedbackService.getSingleFeedback(id));
+                return res.status(200).json(yield feedbackService.getSingleFeedback(id));
             }
             catch (err) {
                 console.error(err);
             }
-        };
-        this.getSingleFeedbackComments = async (req, res) => {
+        });
+        this.getSingleFeedbackComments = (req, res) => __awaiter(this, void 0, void 0, function* () {
             try {
                 const id = req.params.id;
                 return res
                     .status(200)
-                    .json(await feedbackService.getSingleFeedbackComments(id));
+                    .json(yield feedbackService.getSingleFeedbackComments(id));
             }
             catch (err) {
                 console.error(err);
             }
-        };
-        this.createFeedback = async (req, res) => {
+        });
+        this.createFeedback = (req, res) => __awaiter(this, void 0, void 0, function* () {
             try {
                 const postData = req.body;
-                await feedbackService.createFeedback(postData);
+                yield feedbackService.createFeedback(postData);
                 return res.status(201).json(feedbackService.getFeedback());
             }
             catch (err) {
                 console.error(err);
             }
-        };
-        this.updateFeedback = async (req, res) => {
+        });
+        this.updateFeedback = (req, res) => __awaiter(this, void 0, void 0, function* () {
             try {
                 const id = req.params.id;
                 const postData = req.body;
-                await feedbackService.updateFeedback(postData, id);
-                return res.status(200).json(await feedbackService.getFeedback());
+                yield feedbackService.updateFeedback(postData, id);
+                return res.status(200).json(yield feedbackService.getFeedback());
             }
             catch (err) {
                 console.error(err);
             }
-        };
-        this.deleteFeedback = async (req, res) => {
+        });
+        this.deleteFeedback = (req, res) => __awaiter(this, void 0, void 0, function* () {
             try {
                 const id = req.params.id;
-                await feedbackService.deleteFeedback(id);
+                yield feedbackService.deleteFeedback(id);
                 return res.status(204).send('Feedback Deleted');
             }
             catch (err) {
                 console.error(err);
             }
-        };
-        this.upvoteFeedback = async (req, res) => {
+        });
+        this.upvoteFeedback = (req, res) => __awaiter(this, void 0, void 0, function* () {
             try {
                 const id = req.params.id;
-                await feedbackService.upvoteFeedback(id);
+                yield feedbackService.upvoteFeedback(id);
             }
             catch (err) {
                 console.error(err);
             }
-        };
+        });
     }
 }
 module.exports = new FeedbackController();
