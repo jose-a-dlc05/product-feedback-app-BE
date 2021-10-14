@@ -3,6 +3,7 @@
 	"version": "1.0.0",
 	"description": "This will be the back end to a product feedback application ",
 	"main": "server.js",
+	"type": "module",
 	"scripts": {
 		"start": "node build/server.js",
 		"poststart": "node build/server.js",
