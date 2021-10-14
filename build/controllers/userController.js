@@ -8,7 +8,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 // Import Service
-import userService from '../services/UserService';
 import Helper from '../controllers/Helper';
 import UserService from '../services/UserService';
 class UserController {
@@ -25,7 +24,7 @@ class UserController {
                     return res.status(400).send({ message: 'Some values are missing' });
                 }
                 const userData = req.body;
-                const userId = yield userService.createUser(userData);
+                const userId = yield UserService.createUser(userData);
                 const token = Helper.generateToken(userId[0]);
                 return res.status(201).send({ token });
             }

@@ -1,13 +1,13 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
 import router from './routes';
 import './lib/env';
 
-const application: express.Express = express();
-application.use(express.json());
-application.use(router);
+const app: express.Express = express();
+app.use(express.json());
+app.use(router);
 
-application.listen(process.env.PORT, () => {
+app.listen(process.env.PORT, () => {
 	console.log(`listening on port ${process.env.PORT}`);
 });
 
-export default application;
+export default app;
