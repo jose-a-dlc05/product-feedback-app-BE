@@ -1,5 +1,5 @@
 // import dao
-const feedbackDAO = require('../dao/Feedback');
+const feedbackDAO = require('../dao/feedback');
 
 class FeedbackService {
 	async getFeedback() {
