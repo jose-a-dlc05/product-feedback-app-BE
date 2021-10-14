@@ -50,7 +50,7 @@ class FeedbackDAO {
         return __awaiter(this, void 0, void 0, function* () {
             const knex = yield db;
             return yield knex.default('product_feedback').insert({
-                id: (0, uuid_1.v4)(),
+                id: uuid_1.v4(),
                 title: feedbackTitle,
                 category,
                 upvotes: 0,

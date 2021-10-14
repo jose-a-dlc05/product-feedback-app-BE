@@ -20,7 +20,7 @@ class CommentDAO {
             try {
                 const knex = yield db_1.default;
                 return yield knex('comments').insert({
-                    id: (0, uuid_1.v4)(),
+                    id: uuid_1.v4(),
                     content: comment,
                     product_feedback_id: feedbackId,
                     user_id: userId,

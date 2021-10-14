@@ -22,7 +22,7 @@ class UserDAO {
             const knex = yield db_1.default;
             return yield knex('users')
                 .insert({
-                id: (0, uuid_1.v4)(),
+                id: uuid_1.v4(),
                 first_name: firstName,
                 last_name: lastName,
                 username: user,
