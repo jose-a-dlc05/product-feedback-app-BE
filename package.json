@@ -4,7 +4,7 @@
 	"description": "This will be the back end to a product feedback application ",
 	"main": "server.js",
 	"scripts": {
-		"start": "node app/build/server.js",
+		"start": "node build/server.js",
 		"poststart": "node build/server.js",
 		"postinstall": "tsc",
 		"watch": "tsc --watch",
