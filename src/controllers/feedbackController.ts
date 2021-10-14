@@ -1,5 +1,5 @@
 // Import Service
-const feedbackService = require('../services/FeedbackService');
+const feedbackService = require('../services/feedbackService');
 
 class FeedbackController {
 	getFeedback = async (req: any, res: any) => {
