@@ -1,1 +1,1 @@
-web: npm start
+web: knex migrate:rollback --knexfile dist/config/db/knexfile.js && knex migrate:latest --knexfile dist/config/db/knexfile.js && knex seed:run dist/config/db && npm start
