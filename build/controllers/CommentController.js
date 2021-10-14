@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,11 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const CommentService_1 = __importDefault(require("../services/CommentService"));
+import CommentService from '../services/CommentService';
 class CommentController {
     constructor() {
         /**
@@ -27,7 +22,7 @@ class CommentController {
                     return res.status(400).send({ message: 'There is no value' });
                 }
                 const { comment } = req.body;
-                const commentCreated = yield CommentService_1.default.createComment(comment, req.user.id, req.params.id);
+                const commentCreated = yield CommentService.createComment(comment, req.user.id, req.params.id);
                 console.log(commentCreated);
                 return res.status(201).json(commentCreated);
             }

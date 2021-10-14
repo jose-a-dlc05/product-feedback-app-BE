@@ -1,11 +1,6 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const bcrypt_1 = __importDefault(require("bcrypt"));
-const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-require("../lib/env");
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import '../lib/env';
 const Helper = {
     /**
      * Hash Password Method
@@ -13,7 +8,7 @@ const Helper = {
      * @returns {string} returns hashed password
      */
     hashPassword(password) {
-        return bcrypt_1.default.hashSync(password, bcrypt_1.default.genSaltSync(8));
+        return bcrypt.hashSync(password, bcrypt.genSaltSync(8));
     },
     /**
      * comparePassword
@@ -22,7 +17,7 @@ const Helper = {
      * @returns {Boolean} return True or False
      */
     comparePassword(hashPassword, password) {
-        return bcrypt_1.default.compareSync(password, hashPassword);
+        return bcrypt.compareSync(password, hashPassword);
     },
     /**
      * Gnerate Token
@@ -30,10 +25,10 @@ const Helper = {
      * @returns {string} token
      */
     generateToken(id) {
-        const token = jsonwebtoken_1.default.sign({
+        const token = jwt.sign({
             userId: id,
         }, process.env.SECRET, { expiresIn: '7d' });
         return token;
     },
 };
-exports.default = Helper;
+export default Helper;

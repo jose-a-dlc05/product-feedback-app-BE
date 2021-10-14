@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,14 +7,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
 // Import Service
-const UserService_1 = __importDefault(require("../services/UserService"));
-const Helper_1 = __importDefault(require("../controllers/Helper"));
-const UserService_2 = __importDefault(require("../services/UserService"));
+import userService from '../services/UserService';
+import Helper from '../controllers/Helper';
+import UserService from '../services/UserService';
 class UserController {
     constructor() {
         /**
@@ -30,8 +25,8 @@ class UserController {
                     return res.status(400).send({ message: 'Some values are missing' });
                 }
                 const userData = req.body;
-                const userId = yield UserService_1.default.createUser(userData);
-                const token = Helper_1.default.generateToken(userId[0]);
+                const userId = yield userService.createUser(userData);
+                const token = Helper.generateToken(userId[0]);
                 return res.status(201).send({ token });
             }
             catch (err) {
@@ -50,9 +45,9 @@ class UserController {
                     return res.status(400).send({ message: 'Some values are missing' });
                 }
                 const userData = req.body;
-                const user = yield UserService_2.default.loginUser(userData);
+                const user = yield UserService.loginUser(userData);
                 const { id: userId, first_name: firstName, last_name: lastName, username, password, created_at: createdAt, updated_at: updatedAt, } = user;
-                const token = Helper_1.default.generateToken(userId);
+                const token = Helper.generateToken(userId);
                 return res.status(201).send({ token });
             }
             catch (err) {

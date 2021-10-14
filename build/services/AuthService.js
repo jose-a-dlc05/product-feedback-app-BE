@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,16 +7,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const Auth_1 = __importDefault(require("../dao/Auth"));
+import AuthDAO from '../dao/Auth';
 class AuthService {
     constructor() {
         this.verifyToken = (userId) => __awaiter(this, void 0, void 0, function* () {
             try {
-                const userRow = yield Auth_1.default.getUserId(userId);
+                const userRow = yield AuthDAO.getUserId(userId);
                 return userRow;
             }
             catch (err) {
@@ -26,4 +21,4 @@ class AuthService {
         });
     }
 }
-exports.default = new AuthService();
+export default new AuthService();

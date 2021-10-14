@@ -1,15 +1,10 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const Auth_1 = __importDefault(require("../middleware/Auth"));
+import express from 'express';
+import Auth from '../middleware/Auth';
 // Import controller
 const FeedbackController = require('../controllers/FeedbackController');
 const UserController = require('../controllers/UserController');
 const CommentController = require('../controllers/CommentController');
-const router = express_1.default.Router();
+const router = express.Router();
 // FEEDBACK
 // Show all feedback
 router.get(['/', '/feedbackproduct'], FeedbackController.getFeedback);
@@ -31,5 +26,5 @@ router.post('/users', UserController.createUser);
 // Login User
 router.post('/users/login', UserController.loginUser);
 // COMMENTS
-router.post(['/:id/comments', '/feedbackproduct/:id/comments'], Auth_1.default.verifyToken, CommentController.createComment);
-exports.default = router;
+router.post(['/:id/comments', '/feedbackproduct/:id/comments'], Auth.verifyToken, CommentController.createComment);
+export default router;

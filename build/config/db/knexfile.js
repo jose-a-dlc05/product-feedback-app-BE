@@ -1,7 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 // Update with your config settings.
-require("../../lib/env");
+import '../../lib/env';
 const knexfile = {
     development: {
         client: 'postgresql',
@@ -40,4 +38,4 @@ const knexfile = {
         },
     },
 };
-exports.default = knexfile;
+export default knexfile;

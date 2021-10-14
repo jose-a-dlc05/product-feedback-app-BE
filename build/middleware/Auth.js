@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,13 +7,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-require("../lib/env");
-const AuthService_1 = __importDefault(require("../services/AuthService"));
+import jwt from 'jsonwebtoken';
+import '../lib/env';
+import AuthService from '../services/AuthService';
 class Auth {
     constructor() {
         /**
@@ -34,8 +29,8 @@ class Auth {
                 return res.status(400).send({ message: 'Token is not provided' });
             }
             try {
-                const decoded = yield jsonwebtoken_1.default.verify(token, process.env.SECRET);
-                const userRow = yield AuthService_1.default.verifyToken(decoded.userId);
+                const decoded = yield jwt.verify(token, process.env.SECRET);
+                const userRow = yield AuthService.verifyToken(decoded.userId);
                 if (!userRow) {
                     return res
                         .status(400)
@@ -54,4 +49,4 @@ class Auth {
         });
     }
 }
-exports.default = new Auth();
+export default new Auth();

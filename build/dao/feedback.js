@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,10 +7,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 //import db
 const db = require('../config/db/db');
-const uuid_1 = require("uuid");
+import { v4 as uuidv4 } from 'uuid';
 // create a class called FeedbackDAO and create methods with queries on accessing db:
 class FeedbackDAO {
     getFeedback() {
@@ -50,7 +48,7 @@ class FeedbackDAO {
         return __awaiter(this, void 0, void 0, function* () {
             const knex = yield db;
             return yield knex.default('product_feedback').insert({
-                id: uuid_1.v4(),
+                id: uuidv4(),
                 title: feedbackTitle,
                 category,
                 upvotes: 0,
