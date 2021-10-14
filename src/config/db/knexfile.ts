@@ -25,9 +25,9 @@ const knexfile = {
 	production: {
 		client: 'pg',
 		connection: process.env.DATABASE_URL,
-		ssl: {
-			rejectUnauthorized: false,
-		},
+		// ssl: {
+		// 	rejectUnauthorized: false,
+		// },
 		// connection: {
 		// 	host: process.env.DB_HOST,
 		// 	database: process.env.DB_NAME,
