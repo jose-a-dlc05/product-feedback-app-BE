@@ -5,7 +5,7 @@ const FeedbackController = require('../controllers/feedbackController');
 const UserController = require('../controllers/UserController');
 const CommentController = require('../controllers/CommentController');
 
-const router: express.Router = express.Router();
+const router = express.Router();
 
 // FEEDBACK
 // Show all feedback
