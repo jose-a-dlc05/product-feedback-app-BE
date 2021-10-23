@@ -26,6 +26,7 @@ class FeedbackDAO {
 			)
 			.count('comments.id as comments')
 			.groupBy(
+				'product_feedback.id',
 				'product_feedback.title',
 				'product_feedback.category',
 				'product_feedback.upvotes',
