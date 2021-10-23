@@ -51,7 +51,14 @@ class FeedbackDAO {
 		const knex = await db;
 		const comments = await knex
 			.default('comments')
-			.select('content', 'id', 'replying_to_user', 'parent_id', 'created_at')
+			.select(
+				'content',
+				'id',
+				'user_id',
+				'replying_to_user',
+				'parent_id',
+				'created_at'
+			)
 			.where('product_feedback_id', productFeedbackId);
 		return comments;
 	}
