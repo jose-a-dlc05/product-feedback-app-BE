@@ -3,6 +3,7 @@ import router from './routes';
 import cors from 'cors';
 import './lib/env';
 
+// This is the point of entry
 const app: express.Express = express();
 app.use(express.json());
 app.use(cors());

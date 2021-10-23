@@ -15,6 +15,7 @@ class FeedbackDAO {
 				'comments.product_feedback_id'
 			)
 			.select(
+				'product_feedback.id',
 				'product_feedback.title',
 				'product_feedback.category',
 				'product_feedback.upvotes',
@@ -40,7 +41,7 @@ class FeedbackDAO {
 		const knex = await db;
 		return await knex
 			.default('product_feedback')
-			.select('title', 'category', 'upvotes', 'status', 'description')
+			.select('id', 'title', 'category', 'upvotes', 'status', 'description')
 			.where('id', productFeedbackId);
 	}
 
