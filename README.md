@@ -44,19 +44,19 @@ The others can be considered as currently in development.
   </tr>
   <tr>
     <td>Show with comments</td>
-    <td>/feedbackproduct/:id/comments</td>
+    <td>/:id/comments</td>
     <td>GET</td>
     <td>Show comments included with the product feedback detail</td>
   </tr>
   <tr>
     <td>Update</td>
-    <td>/feedbackproduct/:id</td>
+    <td>/:id</td>
     <td>PUT</td>
     <td>Update a particular feedback</td>
   </tr>
   <tr>
     <td>Destroy</td>
-    <td>/feedbackproduct/:id</td>
+    <td>/:id</td>
     <td>DELETE</td>
     <td>Delete a particular feedback</td>
   </tr>
