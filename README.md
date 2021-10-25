@@ -13,7 +13,9 @@ This repository is the back-end of the application where the technologies used a
 - [PostgreSQL](https://www.postgresql.org/)
 - [Knex](https://knexjs.org/)
 
-So you have an idea of how my REST API is built please look at this table.
+So you have an idea of how my REST API is built please look at this table. 
+Please note the highlighted endpoints are the only ones that currently work. 
+The others can be considered as currently in development. 
 
 <table>
   <tr>
@@ -24,19 +26,19 @@ So you have an idea of how my REST API is built please look at this table.
   </tr>
   <tr>
     <td>Index</td>
-    <td>/feedbackproduct</td>
+    <td>/</td>
     <td>GET</td>
     <td>Display all feedback</td>
   </tr>
   <tr>
     <td>Create</td>
-    <td>/feedbackproduct</td>
+    <td>/</td>
     <td>POST</td>
     <td>Add new feedback to database</td>
   </tr>
   <tr>
     <td>Show</td>
-    <td>/feedbackproduct/:id</td>
+    <td>/:id</td>
     <td>GET</td>
     <td>Show product feedback detail</td>
   </tr>
@@ -57,30 +59,6 @@ So you have an idea of how my REST API is built please look at this table.
     <td>/feedbackproduct/:id</td>
     <td>DELETE</td>
     <td>Delete a particular feedback</td>
-  </tr>
-  <tr>
-    <td>Create</td>
-    <td>/comment</td>
-    <td>POST</td>
-    <td>Add new comment to database</td>
-  </tr>
-  <tr>
-    <td>Create</td>
-    <td>/reply</td>
-    <td>POST</td>
-    <td>Add new reply to database, then redirect</td>
-  </tr>
-  <tr>
-    <td>Create</td>
-    <td>/users</td>
-    <td>POST</td>
-    <td>Add new user to database</td>
-  </tr>
-  <tr>
-    <td>Create</td>
-    <td>/users/login</td>
-    <td>POST</td>
-    <td>User Login</td>
   </tr>
 </table>
 
