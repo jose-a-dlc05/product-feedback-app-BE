@@ -1,9 +1,10 @@
-const feedback: any = require('../src/dao/feedback');
-const productRequestDbAll = require('./productRequestDb');
-const productRequestDbSingle = require('./productRequestDb');
+const feedback: any = require('../dao/Feedback');
+const productRequest = require('./productRequestDb');
+
+const { productRequestDbAll, productRequestDbSingle } = productRequest;
 
 jest.mock(
-	'../src/config/db/db',
+	'../config/db/db',
 	jest.fn(() =>
 		Promise.resolve({
 			default: jest.fn(),
@@ -15,7 +16,7 @@ jest.mock(
 		} as unknown)
 	)
 );
-const db = require('../src/config/db/db');
+const db = require('../config/db/db');
 
 describe('feedback dao unit tests', () => {
 	describe('feedbackDAO', () => {
@@ -31,7 +32,7 @@ describe('feedback dao unit tests', () => {
 		});
 
 		it('should call knex and return single feedback', async () => {
-			const productFeedbackId: string = '6ea1ed94-e08e-4bf1-9cb3-d087e4ed9d3f';
+			const productFeedbackId: string = '5880a4ae-1ddc-48b2-9375-2e8287053192';
 			const knex = await db;
 			knex.default.mockReturnThis();
 			knex.select.mockReturnThis();

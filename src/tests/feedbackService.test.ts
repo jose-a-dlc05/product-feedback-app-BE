@@ -1,5 +1,5 @@
-const feedbackServ: any = require('../src/services/feedbackService');
-const feedbackDataObject: any = require('../src/dao/feedback');
+const feedbackServ: any = require('../services/FeedbackService');
+const feedbackDataObject: any = require('../dao/Feedback');
 const productRequestTable = require('./feedbackController.test');
 
 describe('feedbackService Unit Tests', () => {

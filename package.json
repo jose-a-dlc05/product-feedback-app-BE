@@ -10,7 +10,8 @@
 		"watch-ts": "tsc -w",
 		"dev": "nodemon ./src/server.ts",
 		"migrate": "knex migrate:latest --knexfile dist/config/db/knexfile.js",
-		"seed": "knex seed:run --knexfile dist/config/db/knexfile.js"
+		"seed": "knex seed:run --knexfile dist/config/db/knexfile.js",
+		"test": "jest dist/"
 	},
 	"author": "Jose De La Cruz",
 	"license": "ISC",
